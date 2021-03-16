@@ -1,5 +1,9 @@
 {
     "GET /api": {
         "description": "Get all api routes"
+    },
+    "POST /api/login": {
+        "description": "responds with users user details",
+        "example post body": {"username": "user1", "password": "userpassword", "isUser": 1}
     }
 }
