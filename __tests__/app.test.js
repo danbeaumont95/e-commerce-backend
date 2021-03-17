@@ -66,4 +66,46 @@ describe("/api/products", () => {
         );
       });
   });
+  test("POST:201 responds with correct status code", () => {
+    const input = {
+      item_name: "Airpods",
+      price: "100.99",
+      img_url:
+        "https://brain-images-ssl.cdn.dixons.com/7/5/10191857/u_10191857.jpg",
+      description:
+        "2020 apple airpods, you can listen to music without any wires",
+      seller: "apple",
+      item_type: "Electronics",
+    };
+    return request(app).post("/api/products").send(input).expect(201);
+  });
+  test("POST:201 adds new product to products table", () => {
+    const input = {
+      item_name: "Airpods",
+      price: "100.99",
+      img_url:
+        "https://brain-images-ssl.cdn.dixons.com/7/5/10191857/u_10191857.jpg",
+      description:
+        "2020 apple airpods, you can listen to music without any wires",
+      seller: "apple",
+      item_type: "Electronics",
+    };
+    const expected = {
+      item_name: "Airpods",
+      price: "100.99",
+      img_url:
+        "https://brain-images-ssl.cdn.dixons.com/7/5/10191857/u_10191857.jpg",
+      description:
+        "2020 apple airpods, you can listen to music without any wires",
+      seller: "apple",
+      item_type: "Electronics",
+    };
+    return request(app)
+      .post("/api/products")
+      .send(input)
+      .expect(201)
+      .then(({ body }) => {
+        expect(body.product).toEqual(expected);
+      });
+  });
 });

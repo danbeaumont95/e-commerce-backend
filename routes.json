@@ -26,5 +26,18 @@
                 "item_type": "Electronics"
               }
         ]
+    },
+    "POST /api/products": {
+        "description": "adds new fighter to products table",
+        "example post body": {
+            "item_name": "Airpods",
+            "price": "100.99",
+            "img_url":
+              "https://brain-images-ssl.cdn.dixons.com/7/5/10191857/u_10191857.jpg",
+            "description":
+              "2020 apple airpods, you can listen to music without any wires",
+            "seller": "apple",
+            "item_type": "Electronics"
+          }
     }
 }
