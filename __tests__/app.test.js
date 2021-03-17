@@ -43,3 +43,27 @@ describe("/api/login", () => {
       .expect(400);
   });
 });
+
+describe("/api/products", () => {
+  test("GET:200 responds with correct status code", () => {
+    return request(app).get("/api/products").expect(200);
+  });
+  test("GET:200 responds with all products", () => {
+    return request(app)
+      .get("/api/products")
+      .expect(200)
+      .then(({ body: { products } }) => {
+        expect(products).toHaveLength(2);
+        expect(products[0]).toEqual(
+          expect.objectContaining({
+            item_name: expect.any(String),
+            price: expect.any(String),
+            img_url: expect.any(String),
+            description: expect.any(String),
+            seller: expect.any(String),
+            item_type: expect.any(String),
+          })
+        );
+      });
+  });
+});
