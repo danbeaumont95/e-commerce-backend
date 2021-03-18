@@ -118,17 +118,17 @@ describe("/api/products/type/:item_type", () => {
     return request(app)
       .get(`/api/products/type/electronics`)
       .expect(200)
-      .then(({ body: { product } }) => {
-        expect(product).toHaveLength(2);
+      .then(({ body: { products } }) => {
+        expect(products).toHaveLength(2);
       });
   });
   test("GET:200 responds with all type:collectables products", () => {
     return request(app)
       .get(`/api/products/type/collectables`)
       .expect(200)
-      .then(({ body: { product } }) => {
-        console.log(product);
-        expect(product).toHaveLength(1);
+      .then(({ body: { products } }) => {
+        console.log(products);
+        expect(products).toHaveLength(1);
       });
   });
 });

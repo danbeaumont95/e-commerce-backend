@@ -1,7 +1,7 @@
 const {
   selectAllProducts,
   addNewProduct,
-  selectProductByType,
+  selectProductsByType,
 } = require("../models/products.models");
 
 exports.getAllProducts = (req, res, next) => {
@@ -22,11 +22,11 @@ exports.postNewProduct = (req, res, next) => {
     .catch(next);
 };
 
-exports.getProductByType = (req, res, next) => {
+exports.getProductsByType = (req, res, next) => {
   const { item_type } = req.params;
-  selectProductByType(item_type)
-    .then((product) => {
-      res.status(200).send({ product });
+  selectProductsByType(item_type)
+    .then((products) => {
+      res.status(200).send({ products });
     })
     .catch(next);
 };

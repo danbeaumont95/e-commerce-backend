@@ -13,6 +13,6 @@ exports.addNewProduct = (product) => {
     });
 };
 
-exports.selectProductByType = (item_type) => {
+exports.selectProductsByType = (item_type) => {
   return connection("products").returning("*").where({ item_type });
 };
