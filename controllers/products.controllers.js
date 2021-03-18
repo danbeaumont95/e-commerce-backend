@@ -2,6 +2,7 @@ const {
   selectAllProducts,
   addNewProduct,
   selectProductsByType,
+  selectProductByName,
 } = require("../models/products.models");
 
 exports.getAllProducts = (req, res, next) => {
@@ -27,6 +28,15 @@ exports.getProductsByType = (req, res, next) => {
   selectProductsByType(item_type)
     .then((products) => {
       res.status(200).send({ products });
+    })
+    .catch(next);
+};
+
+exports.getProductByName = (req, res, next) => {
+  const { item_name } = req.params;
+  selectProductByName(item_name)
+    .then((product) => {
+      res.status(200).send({ product });
     })
     .catch(next);
 };

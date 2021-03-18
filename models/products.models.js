@@ -16,3 +16,7 @@ exports.addNewProduct = (product) => {
 exports.selectProductsByType = (item_type) => {
   return connection("products").returning("*").where({ item_type });
 };
+
+exports.selectProductByName = (item_name) => {
+  return connection("products").returning("*").where({ item_name });
+};

@@ -132,3 +132,28 @@ describe("/api/products/type/:item_type", () => {
       });
   });
 });
+
+describe("/api/products/:item_name", () => {
+  test("GET:200 responds with correct status code", () => {
+    return request(app).get("/api/products/MacBook_Pro").expect(200);
+  });
+  test("GET:200 responds with product of passed item_name", () => {
+    const param = "MacBook_Pro";
+    return request(app)
+      .get(`/api/products/${param}`)
+      .expect(200)
+      .then(({ body: { product } }) => {
+        expect(product).toHaveLength(1);
+        expect(product[0]).toEqual(
+          expect.objectContaining({
+            item_name: param,
+            price: expect.any(String),
+            img_url: expect.any(String),
+            description: expect.any(String),
+            seller: expect.any(String),
+            item_type: expect.any(String),
+          })
+        );
+      });
+  });
+});

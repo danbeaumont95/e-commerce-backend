@@ -48,6 +48,19 @@
         }
       ]
     },
+    "GET /api/products/:item_name": {
+      "description": "responds with product of item_name",
+      "example response": [
+        {
+          "item_name": "MacBook_Pro",
+          "price": "999.99",
+          "img_url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp16touch-space-select-201911_GEO_GB?wid=892&hei=820&&qlt=80&.v=1572654985524",
+          "description": "New 2020 MacBook Pro with M1 Chip",
+          "seller": "danbeaumont",
+          "item_type": "electronics"
+        }
+      ]
+    },
     "POST /api/products": {
         "description": "adds new fighter to products table",
         "example post body": {
