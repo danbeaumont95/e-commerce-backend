@@ -12,3 +12,7 @@ exports.addNewProduct = (product) => {
       return product;
     });
 };
+
+exports.selectProductByType = (item_type) => {
+  return connection("products").returning("*").where({ item_type });
+};

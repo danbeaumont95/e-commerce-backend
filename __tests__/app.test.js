@@ -53,7 +53,7 @@ describe("/api/products", () => {
       .get("/api/products")
       .expect(200)
       .then(({ body: { products } }) => {
-        expect(products).toHaveLength(2);
+        expect(products).toHaveLength(3);
         expect(products[0]).toEqual(
           expect.objectContaining({
             item_name: expect.any(String),
@@ -106,6 +106,29 @@ describe("/api/products", () => {
       .expect(201)
       .then(({ body }) => {
         expect(body.product).toEqual(expected);
+      });
+  });
+});
+
+describe("/api/products/type/:item_type", () => {
+  test("GET:200 responds with correct status code", () => {
+    return request(app).get(`/api/products/type/electronics`).expect(200);
+  });
+  test("GET:200 responds with all type:electronic products", () => {
+    return request(app)
+      .get(`/api/products/type/electronics`)
+      .expect(200)
+      .then(({ body: { product } }) => {
+        expect(product).toHaveLength(2);
+      });
+  });
+  test("GET:200 responds with all type:collectables products", () => {
+    return request(app)
+      .get(`/api/products/type/collectables`)
+      .expect(200)
+      .then(({ body: { product } }) => {
+        console.log(product);
+        expect(product).toHaveLength(1);
       });
   });
 });
