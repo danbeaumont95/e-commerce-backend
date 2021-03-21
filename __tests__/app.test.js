@@ -157,3 +157,27 @@ describe("/api/products/:item_name", () => {
       });
   });
 });
+
+describe("/api/sellers", () => {
+  test("GET:200 responds with correct status code", () => {
+    return request(app).get("/api/sellers").expect(200);
+  });
+  test("GET:200 responds with array of objects with all sellers", () => {
+    return request(app)
+      .get("/api/sellers")
+      .expect(200)
+      .then(({ body: { sellers } }) => {
+        expect(sellers).toHaveLength(3);
+        expect(sellers[0]).toEqual(
+          expect.objectContaining({
+            seller_name: expect.any(String),
+            img_url: expect.any(String),
+            amount_of_products: expect.any(Number),
+            reviews: expect.any(String),
+            year_joined: expect.any(Number),
+            location: expect.any(String),
+          })
+        );
+      });
+  });
+});

@@ -15,7 +15,7 @@ module.exports = [
       "https://www.extremetech.com/wp-content/uploads/2020/11/PS5-Sony-Feature-640x353.jpg",
     description:
       "Harness the power of a custom CPU, GPU, and SSD with Integrated I/O that rewrite the rules of what a PlayStation console can do. ",
-    seller: "Sony",
+    seller: "sony",
     item_type: "electronics",
   },
   {
