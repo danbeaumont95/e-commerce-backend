@@ -181,3 +181,26 @@ describe("/api/sellers", () => {
       });
   });
 });
+describe("/api/sellers/:seller_name", () => {
+  test("GET:200 responds with correct status code", () => {
+    return request(app).get("/api/sellers/sony").expect(200);
+  });
+  test("GET:200 responds with seller info", () => {
+    return request(app)
+      .get("/api/sellers/sony")
+      .expect(200)
+      .then(({ body: { seller } }) => {
+        expect(seller).toHaveLength(1);
+        expect(seller[0]).toEqual(
+          expect.objectContaining({
+            seller_name: expect.any(String),
+            img_url: expect.any(String),
+            amount_of_products: expect.any(Number),
+            reviews: expect.any(String),
+            year_joined: expect.any(Number),
+            location: expect.any(String),
+          })
+        );
+      });
+  });
+});
