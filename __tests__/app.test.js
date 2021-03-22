@@ -53,14 +53,14 @@ describe("/api/products", () => {
       .get("/api/products")
       .expect(200)
       .then(({ body: { products } }) => {
-        expect(products).toHaveLength(3);
+        expect(products).toHaveLength(4);
         expect(products[0]).toEqual(
           expect.objectContaining({
             item_name: expect.any(String),
             price: expect.any(String),
             img_url: expect.any(String),
             description: expect.any(String),
-            seller: expect.any(String),
+            seller_name: expect.any(String),
             item_type: expect.any(String),
           })
         );
@@ -74,7 +74,7 @@ describe("/api/products", () => {
         "https://brain-images-ssl.cdn.dixons.com/7/5/10191857/u_10191857.jpg",
       description:
         "2020 apple airpods, you can listen to music without any wires",
-      seller: "apple",
+      seller_name: "apple",
       item_type: "Electronics",
     };
     return request(app).post("/api/products").send(input).expect(201);
@@ -87,7 +87,7 @@ describe("/api/products", () => {
         "https://brain-images-ssl.cdn.dixons.com/7/5/10191857/u_10191857.jpg",
       description:
         "2020 apple airpods, you can listen to music without any wires",
-      seller: "apple",
+      seller_name: "apple",
       item_type: "Electronics",
     };
     const expected = {
@@ -97,7 +97,7 @@ describe("/api/products", () => {
         "https://brain-images-ssl.cdn.dixons.com/7/5/10191857/u_10191857.jpg",
       description:
         "2020 apple airpods, you can listen to music without any wires",
-      seller: "apple",
+      seller_name: "apple",
       item_type: "Electronics",
     };
     return request(app)
@@ -119,7 +119,7 @@ describe("/api/products/type/:item_type", () => {
       .get(`/api/products/type/electronics`)
       .expect(200)
       .then(({ body: { products } }) => {
-        expect(products).toHaveLength(2);
+        expect(products).toHaveLength(3);
       });
   });
   test("GET:200 responds with all type:collectables products", () => {
@@ -127,7 +127,6 @@ describe("/api/products/type/:item_type", () => {
       .get(`/api/products/type/collectables`)
       .expect(200)
       .then(({ body: { products } }) => {
-        console.log(products);
         expect(products).toHaveLength(1);
       });
   });
@@ -150,7 +149,7 @@ describe("/api/products/:item_name", () => {
             price: expect.any(String),
             img_url: expect.any(String),
             description: expect.any(String),
-            seller: expect.any(String),
+            seller_name: expect.any(String),
             item_type: expect.any(String),
           })
         );
@@ -196,6 +195,33 @@ describe("/api/sellers/:seller_name", () => {
             seller_name: expect.any(String),
             img_url: expect.any(String),
             amount_of_products: expect.any(Number),
+            reviews: expect.any(String),
+            year_joined: expect.any(Number),
+            location: expect.any(String),
+          })
+        );
+      });
+  });
+});
+
+describe("/api/sellers/:seller_name/products", () => {
+  test("GET:200 responds with correct status code", () => {
+    return request(app).get("/api/sellers/sony/products").expect(200);
+  });
+  test("GET:200 responds with all items of passed seller", () => {
+    return request(app)
+      .get("/api/sellers/sony/products")
+      .expect(200)
+      .then(({ body: { products } }) => {
+        expect(products).toHaveLength(2);
+        expect(products[0]).toEqual(
+          expect.objectContaining({
+            item_name: expect.any(String),
+            price: expect.any(String),
+            img_url: expect.any(String),
+            description: expect.any(String),
+            seller_name: expect.any(String),
+            item_type: expect.any(String),
             reviews: expect.any(String),
             year_joined: expect.any(Number),
             location: expect.any(String),

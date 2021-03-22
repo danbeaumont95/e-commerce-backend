@@ -30,6 +30,7 @@ app.use((err, req, res, next) => {
 app.use((err, req, res, next) => {
   // handle sql/database error
   if (err.code) {
+    console.log(err);
     res.status(400).send({ msg: err.detail });
   }
 });

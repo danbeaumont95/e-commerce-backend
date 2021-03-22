@@ -5,7 +5,7 @@ module.exports = [
     img_url:
       "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp16touch-space-select-201911_GEO_GB?wid=892&hei=820&&qlt=80&.v=1572654985524",
     description: "New 2020 MacBook Pro with M1 Chip",
-    seller: "danbeaumont",
+    seller_name: "danbeaumont",
     item_type: "electronics",
   },
   {
@@ -15,7 +15,7 @@ module.exports = [
       "https://www.extremetech.com/wp-content/uploads/2020/11/PS5-Sony-Feature-640x353.jpg",
     description:
       "Harness the power of a custom CPU, GPU, and SSD with Integrated I/O that rewrite the rules of what a PlayStation console can do. ",
-    seller: "sony",
+    seller_name: "sony",
     item_type: "electronics",
   },
   {
@@ -25,7 +25,17 @@ module.exports = [
       "https://s3.thcdn.com/productimg/1600/1600/11087411-7739114877417086.jpg",
     description:
       'Magic!! The hero of the Harry Potter film franchise arrives in pop vinyl form.;With a likeness of Daniel Radcliffe as Harry Potter this Harry Potter Pop! Vinyl Figure stands approx 3 3/4" tall and comes boxed with a display window.',
-    seller: "popinabox",
+    seller_name: "popinabox",
     item_type: "collectables",
+  },
+  {
+    item_name: "UFC4_Playstation4",
+    price: "49.99",
+    img_url:
+      "https://digitalcontent.api.tesco.com/v2/media/ghs/05bab51d-21fb-4d76-adaf-8790598430f5/snapshotimagehandler_1105243438.jpeg?h=540&w=540",
+    description:
+      "In EA SPORTS UFC 4 the fighter you become is shaped by your fight style, your achievements, and your personality. Develop and customize your character through a unified progression system across all modes. ",
+    seller_name: "sony",
+    item_type: "electronics",
   },
 ];

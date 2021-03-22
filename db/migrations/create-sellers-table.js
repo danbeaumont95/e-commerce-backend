@@ -1,5 +1,5 @@
 exports.up = function (knex) {
-  console.log("creating sellers table");
+  // console.log("creating sellers table");
   return knex.schema.createTable("sellers", (sellersTable) => {
     sellersTable.string("seller_name").primary();
     sellersTable.string("img_url");
@@ -11,6 +11,6 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  console.log("dropping sellers table");
+  // console.log("dropping sellers table");
   return knex.schema.dropTable("sellers");
 };
