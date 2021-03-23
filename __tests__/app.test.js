@@ -170,7 +170,7 @@ describe("/api/sellers", () => {
         expect(sellers[0]).toEqual(
           expect.objectContaining({
             seller_name: expect.any(String),
-            img_url: expect.any(String),
+            avatar_url: expect.any(String),
             amount_of_products: expect.any(Number),
             reviews: expect.any(String),
             year_joined: expect.any(Number),
@@ -193,7 +193,7 @@ describe("/api/sellers/:seller_name", () => {
         expect(seller[0]).toEqual(
           expect.objectContaining({
             seller_name: expect.any(String),
-            img_url: expect.any(String),
+            avatar_url: expect.any(String),
             amount_of_products: expect.any(Number),
             reviews: expect.any(String),
             year_joined: expect.any(Number),
@@ -225,6 +225,7 @@ describe("/api/sellers/:seller_name/products", () => {
             reviews: expect.any(String),
             year_joined: expect.any(Number),
             location: expect.any(String),
+            avatar_url: expect.any(String),
           })
         );
       });

@@ -2,7 +2,7 @@ exports.up = function (knex) {
   // console.log("creating sellers table");
   return knex.schema.createTable("sellers", (sellersTable) => {
     sellersTable.string("seller_name").primary();
-    sellersTable.string("img_url");
+    sellersTable.string("avatar_url");
     sellersTable.integer("amount_of_products");
     sellersTable.string("reviews");
     sellersTable.integer("year_joined");
