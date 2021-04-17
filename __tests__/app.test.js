@@ -231,3 +231,50 @@ describe("/api/sellers/:seller_name/products", () => {
       });
   });
 });
+
+describe("/api/users", () => {
+  test("GET:200 responds with correct status code", () => {
+    return request(app).get("/api/users").expect(200);
+  });
+  test("GET:200 responds with all users info", () => {
+    return request(app)
+      .get("/api/users")
+      .expect(200)
+      .then(({ body: { users } }) => {
+        expect(users[0]).toEqual(
+          expect.objectContaining({
+            username: expect.any(String),
+            firstname: expect.any(String),
+            lastname: expect.any(String),
+            avatar_url: expect.any(String),
+          })
+        );
+      });
+  });
+  test("POST: 201 responds with correct status code", () => {
+    const input = {
+      username: "test2",
+      password: "test2password",
+      first_name: "test2firstname",
+      surname: "test2surname",
+      avatar_url: "www.google.com",
+    };
+    return request(app).post("/api/users").send(input).expect(201);
+  });
+  test("POST: 400 responds with error status code if user already exists", () => {
+    const input = {
+      username: "test123",
+      password: "password123",
+      first_name: "test",
+      surname: "tester",
+      avatar_url: "https://i.redd.it/w3kr4m2fi3111.png",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(input)
+      .expect(400)
+      .then(({ body: { msg } }) => {
+        expect(msg).toBe("Key (username)=(test123) already exists.");
+      });
+  });
+});

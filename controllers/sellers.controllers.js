@@ -25,7 +25,6 @@ exports.getProductsBySellerName = (req, res, next) => {
   const { seller_name } = req.params;
   selectProductsBySellerName(seller_name)
     .then((products) => {
-      console.log(products, "products");
       res.status(200).send({ products });
     })
     .catch(next);
