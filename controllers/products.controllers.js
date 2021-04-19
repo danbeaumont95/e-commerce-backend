@@ -3,6 +3,7 @@ const {
   addNewProduct,
   selectProductsByType,
   selectProductByName,
+  deleteProductByItemName,
 } = require("../models/products.models");
 
 exports.getAllProducts = (req, res, next) => {
@@ -37,6 +38,15 @@ exports.getProductByName = (req, res, next) => {
   selectProductByName(item_name)
     .then((product) => {
       res.status(200).send({ product });
+    })
+    .catch(next);
+};
+
+exports.removeProductByItemName = (req, res, next) => {
+  const { item_name } = req.params;
+  deleteProductByItemName(item_name)
+    .then(() => {
+      res.sendStatus(200);
     })
     .catch(next);
 };

@@ -155,6 +155,18 @@ describe("/api/products/:item_name", () => {
         );
       });
   });
+  test("DELETE: 200 responds with correct status code", () => {
+    const input = { item_name: "MacBook_Pro" };
+    return request(app).delete("/api/products/MacBook_Pro").expect(200);
+  });
+  test("DELETE: 200 responds with correct error code if passed incorrect item_name", () => {
+    return request(app)
+      .delete("/api/products/MacBook_Pro_NAAAT")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("No item found");
+      });
+  });
 });
 
 describe("/api/sellers", () => {

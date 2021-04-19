@@ -20,3 +20,14 @@ exports.selectProductsByType = (item_type) => {
 exports.selectProductByName = (item_name) => {
   return connection("products").returning("*").where({ item_name });
 };
+
+exports.deleteProductByItemName = (item_name) => {
+  return connection("products")
+    .delete()
+    .where({ item_name })
+    .then((count) => {
+      if (count === 0) {
+        throw { status: 404, msg: "No item found" };
+      }
+    });
+};
