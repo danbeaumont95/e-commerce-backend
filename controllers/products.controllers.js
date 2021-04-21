@@ -4,6 +4,7 @@ const {
   selectProductsByType,
   selectProductByName,
   deleteProductByItemName,
+  selectAllTypes,
 } = require("../models/products.models");
 
 exports.getAllProducts = (req, res, next) => {
@@ -47,6 +48,14 @@ exports.removeProductByItemName = (req, res, next) => {
   deleteProductByItemName(item_name)
     .then(() => {
       res.sendStatus(200);
+    })
+    .catch(next);
+};
+
+exports.getAllTypes = (req, res, next) => {
+  selectAllTypes()
+    .then((types) => {
+      res.status(200).send(types);
     })
     .catch(next);
 };

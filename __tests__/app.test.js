@@ -290,3 +290,18 @@ describe("/api/users", () => {
       });
   });
 });
+
+describe.only("/api/products/types/all", () => {
+  test("GET:200 responds with correct status code", () => {
+    return request(app).get("/api/products/types/all").expect(200);
+  });
+  test("GET:200 responds with all item types", () => {
+    return request(app)
+      .get("/api/products/types/all")
+      .expect(200)
+      .then(({ body }) => {
+        console.log(body);
+        expect(body).toHaveLength(2);
+      });
+  });
+});

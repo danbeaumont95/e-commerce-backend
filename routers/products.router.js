@@ -5,6 +5,7 @@ const {
   getProductByName,
   getProductsByType,
   removeProductByItemName,
+  getAllTypes,
 } = require("../controllers/products.controllers");
 
 productsRouter.route("/").get(getAllProducts).post(postNewProduct);
@@ -13,5 +14,7 @@ productsRouter
   .get(getProductByName)
   .delete(removeProductByItemName);
 productsRouter.route("/type/:item_type").get(getProductsByType);
+
+productsRouter.route("/types/all").get(getAllTypes);
 
 module.exports = productsRouter;

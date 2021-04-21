@@ -31,3 +31,21 @@ exports.deleteProductByItemName = (item_name) => {
       }
     });
 };
+
+exports.selectAllTypes = () => {
+  return connection
+    .select("*")
+    .from("products")
+    .then((types) => {
+      if (!types) return Promise.reject({ status: 404, msg: "No types found" });
+      else {
+        let filteredTypes = [];
+        for (let i = 0; i < types.length; i++) {
+          if (!filteredTypes.includes(types[i].item_type)) {
+            filteredTypes.push(types[i].item_type);
+          }
+        }
+        return filteredTypes;
+      }
+    });
+};
